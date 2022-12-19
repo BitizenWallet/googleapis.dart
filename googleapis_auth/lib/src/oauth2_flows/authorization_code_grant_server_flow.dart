@@ -5,6 +5,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import '../../constants.dart';
 import '../access_credentials.dart';
 import '../exceptions.dart';
 import '../typedefs.dart';
@@ -97,20 +98,21 @@ class AuthorizationCodeGrantServerFlow
           ..statusCode = 200
           ..headers.set('content-type', 'text/html; charset=UTF-8')
           ..write(
-            '''
-<!DOCTYPE html>
-
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Authorization successful.</title>
-  </head>
-
-  <body>
-    <h2 style="text-align: center">Application has successfully obtained access credentials</h2>
-    <p style="text-align: center">This window can be closed now.</p>
-  </body>
-</html>''',
+            html,
+//             '''
+// <!DOCTYPE html>
+//
+// <html>
+//   <head>
+//     <meta charset="utf-8">
+//     <title>Authorization successful.</title>
+//   </head>
+//
+//   <body>
+//     <h2 style="text-align: center">Application has successfully obtained access credentials</h2>
+//     <p style="text-align: center">This window can be closed now.</p>
+//   </body>
+// </html>''',
           );
         await request.response.close();
         return credentials;
